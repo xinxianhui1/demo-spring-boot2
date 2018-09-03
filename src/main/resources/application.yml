@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /springboot-01
+
+spring:
+  datasource:
+      name: datasource
+      type: com.alibaba.druid.pool.DruidDataSource
+      #druid�������
+      druid:
+        #��������
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.52.128:3306/springboot01db?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+        username: root
+        password: 123456
+        #���ͳ�����ص�filters
+        filters: stat
+        #���ó�ʼ����С/��С/���
+        initial-size: 1
+        min-idle: 1
+        max-active: 20
+        #��ȡ���ӵȴ���ʱʱ��
+        max-wait: 60000
+        #�����ý���һ�μ�⣬�����Ҫ�رյĿ�������
+        time-between-eviction-runs-millis: 60000
+        #һ�������ڳ�����С�����ʱ��
+        min-evictable-idle-time-millis: 300000
+        validation-query: SELECT 'x'
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        #��PSCache����ָ��ÿ��������PSCache�Ĵ�С��
+        #oracle��Ϊtrue��mysql��Ϊfalse���ֿ�ֱ�϶��Ƽ�����Ϊfalse
+        pool-prepared-statements: false
+        max-pool-prepared-statement-per-connection-size: 20
+  redis:
+    host: 192.168.52.128
+    port: 6379
+  data:
+    mongodb:
+      uri: mongodb://u_mydb:123456@192.168.52.128:27017/mydb
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.offcn.pojo
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
